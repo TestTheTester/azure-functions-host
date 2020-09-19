@@ -46,6 +46,12 @@ namespace Microsoft.Azure.WebJobs.Script
             return isEasyAuthEnabled;
         }
 
+        public static bool IsAzureMonitorEnabled(this IEnvironment environment)
+        {
+            string value = environment.GetEnvironmentVariable(AzureMonitorEnabled);
+            return value == null || value == "1";
+        }
+
         public static bool IsRunningAsHostedSiteExtension(this IEnvironment environment)
         {
             if (environment.IsAppService())

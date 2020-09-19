@@ -57,6 +57,7 @@ namespace Microsoft.Azure.WebJobs.Script
         public const string RoleInstanceId = "RoleInstanceId";
         public const string HealthPingEnabled = "WEBSITE_FUNCTIONS_HEALTH_PING_ENABLED";
         public const string TestDataCapEnabled = "WEBSITE_FUNCTIONS_TESTDATA_CAP_ENABLED";
+        public const string AzureMonitorEnabled = "WEBSITE_FUNCTIONS_AZUREMONITOR_ENABLED";
 
         /// <summary>
         /// Environment variable dynamically set by the platform when it is safe to
