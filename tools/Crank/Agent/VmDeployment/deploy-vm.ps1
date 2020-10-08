@@ -35,10 +35,6 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
-if ($OsType -ne 'Linux') {
-    throw 'Only Linux is supported now'
-}
-
 $resourceGroupName = "FunctionsCrank-$OsType-$BaseName$NamePostfix"
 $vmName = "functions-crank-$OsType-$BaseName$NamePostfix".ToLower()
 Write-Verbose "Creating VM '$vmName' in resource group '$resourceGroupName'"
@@ -62,12 +58,13 @@ New-AzResourceGroupDeployment `
         dnsLabelPrefix = $vmName
         vmSize = $VmSize
         osDiskType = $OsDiskType
+        osType = $OsType
         adminUsername = $UserName
-        authenticationType = 'sshPublicKey'
+        authenticationType = $OsType -eq 'Windows' ? 'password' : 'sshPublicKey'
         vaultName = 'functions-crank-kv'
         vaultResourceGroupName = 'FunctionsCrank'
         vaultSubscription = $vaultSubscriptionId
-        secretName = 'LinuxCrankAgentVmSshKey-Public'
+        secretName = $OsType -eq 'Windows' ? 'CrankAgentVMAdminPassword' : 'LinuxCrankAgentVmSshKey-Public'
         customScriptParameters = $customScriptParameters | ConvertTo-Json -Compress
     } | Out-Null
 

@@ -35,10 +35,6 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
-if ($OsType -ne 'Linux') {
-    throw 'Only Linux is supported now'
-}
-
 $NamePostfixes | ForEach-Object -Parallel {
     & "$using:PSScriptRoot/deploy-vm.ps1" `
         -SubscriptionName $using:SubscriptionName `

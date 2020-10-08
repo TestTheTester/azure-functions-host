@@ -8,6 +8,16 @@
                 "description": "The name of you Virtual Machine."
             }
         },
+        "osType": {
+            "type": "string",
+            "allowedValues": [
+                "Linus",
+                "Windows"
+            ],
+            "metadata": {
+                "description": "OS type."
+            }
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
