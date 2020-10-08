@@ -103,6 +103,16 @@
                                 "description": "The name of you Virtual Machine."
                             }
                         },
+                        "osType": {
+                            "type": "string",
+                            "allowedValues": [
+                                "Linus",
+                                "Windows"
+                            ],
+                            "metadata": {
+                                "description": "OS type."
+                            }
+                        },
                         "adminUsername": {
                             "type": "string",
                             "metadata": {
@@ -407,6 +417,9 @@
                 "parameters": {
                     "vmName": {
                         "value": "[parameters('vmName')]"
+                    },
+                    "osType": {
+                        "value": "[parameters('osType')]"
                     },
                     "adminUsername": {
                         "value": "[parameters('adminUsername')]"
