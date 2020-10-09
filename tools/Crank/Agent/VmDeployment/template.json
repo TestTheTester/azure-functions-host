@@ -11,7 +11,7 @@
         "osType": {
             "type": "string",
             "allowedValues": [
-                "Linus",
+                "Linux",
                 "Windows"
             ],
             "metadata": {
@@ -106,7 +106,7 @@
                         "osType": {
                             "type": "string",
                             "allowedValues": [
-                                "Linus",
+                                "Linux",
                                 "Windows"
                             ],
                             "metadata": {
