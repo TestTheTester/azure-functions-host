@@ -36,7 +36,7 @@ param (
 $ErrorActionPreference = 'Stop'
 
 $resourceGroupName = "FunctionsCrank-$OsType-$BaseName$NamePostfix"
-$vmName = "functions-crank-$OsType-$BaseName$NamePostfix".ToLower()
+$vmName = "functions-crank-$($OsType -eq 'windows' ? 'win' : $OsType)-$BaseName$NamePostfix".ToLower()
 Write-Verbose "Creating VM '$vmName' in resource group '$resourceGroupName'"
 
 Set-AzContext -Subscription $SubscriptionName | Out-Null
