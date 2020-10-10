@@ -141,20 +141,6 @@
                                 "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
                             }
                         },
-                        "ubuntuOSVersion": {
-                            "type": "string",
-                            "defaultValue": "18.04-LTS",
-                            "metadata": {
-                                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
-                            }
-                        },
-                        "windowsOSVersion": {
-                            "type": "string",
-                            "defaultValue": "2016-Datacenter",
-                            "metadata": {
-                                "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
-                            }
-                        },
                         "location": {
                             "type": "string",
                             "defaultValue": "[resourceGroup().location]",
@@ -364,7 +350,7 @@
                                     "imageReference": {
                                         "publisher": "[if(equals(parameters('osType'), 'Linux'), 'Canonical', 'MicrosoftWindowsServer')]",
                                         "offer": "[if(equals(parameters('osType'), 'Linux'), 'UbuntuServer', 'WindowsServer')]",
-                                        "sku": "[if(equals(parameters('osType'), 'Linux'), parameters('ubuntuOSVersion'), parameters('windowsOSVersion'))]",
+                                        "sku": "[if(equals(parameters('osType'), 'Linux'), '18.04-LTS', '2016-Datacenter')]",
                                         "version": "latest"
                                     }
                                 },
