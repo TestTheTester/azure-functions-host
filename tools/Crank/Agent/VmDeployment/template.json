@@ -384,9 +384,9 @@
                                     ],
                                     "commandToExecute": "[concat('mv bootstrap.sh /home/Functions/ && cd /home/Functions && chmod +xr bootstrap.sh && sudo -H -u Functions ./bootstrap.sh \"', replace(parameters('customScriptParameters'), '\"', '\\\"'), '\"')]"
                                 },
-                                "publisher": "Microsoft.Azure.Extensions",
-                                "type": "CustomScript",
-                                "typeHandlerVersion": "2.1"
+                                "publisher": "[if(equals(parameters('osType'), 'Linux'), 'Microsoft.Azure.Extensions', 'Microsoft.Compute')]",
+                                "type": "[if(equals(parameters('osType'), 'Linux'), 'CustomScript', 'CustomScriptExtension')]",
+                                "typeHandlerVersion": "[if(equals(parameters('osType'), 'Linux'), '2.1', '1.10')]"
                             },
                             "tags": {},
                             "type": "Microsoft.Compute/virtualMachines/extensions"
