@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+
 $powerShellVersion = '7.0.3'
 $powerShellMsiName = "PowerShell-$powerShellVersion-win-x64.msi"
 [Net.ServicePointManager]::SecurityProtocol =[Net.SecurityProtocolType]::Tls12
