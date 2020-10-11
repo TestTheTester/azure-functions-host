@@ -46,7 +46,7 @@ New-AzResourceGroup -Name $resourceGroupName -Location $Location | Out-Null
 $vaultSubscriptionId = (Get-AzSubscription -SubscriptionName 'Antares-Demo').Id
 
 $customScriptParameters = @{
-    CrankBranch = 'master'
+    CrankBranch = 'anatolib/crank-windows-vm-deployment'
     Docker = $Docker.IsPresent
 }
 

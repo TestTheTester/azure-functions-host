@@ -405,7 +405,7 @@
                                 "autoUpgradeMinorVersion": true,
                                 "protectedSettings": {
                                     "fileUris": [
-                                        "https://raw.githubusercontent.com/Azure/azure-functions-host/dev/tools/Crank/Agent/Windows/bootstrap.ps1"
+                                        "https://raw.githubusercontent.com/Azure/azure-functions-host/anatolib/crank-windows-vm-deployment/tools/Crank/Agent/Windows/bootstrap.ps1"
                                     ],
                                     "commandToExecute": "[concat('.\\bootstrap.ps1 \"', replace(parameters('customScriptParameters'), '\"', '\\\"'), '\"')]"
                                 },
