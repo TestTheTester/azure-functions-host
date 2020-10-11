@@ -370,6 +370,7 @@
                             }
                         },
                         {
+                            "condition": "[equals(parameters('osType'), 'Linux')]",
                             "type": "Microsoft.Compute/virtualMachines/extensions",
                             "apiVersion": "2019-12-01",
                             "dependsOn": [
@@ -385,9 +386,32 @@
                                     ],
                                     "commandToExecute": "[concat('mv bootstrap.sh /home/Functions/ && cd /home/Functions && chmod +xr bootstrap.sh && sudo -H -u Functions ./bootstrap.sh \"', replace(parameters('customScriptParameters'), '\"', '\\\"'), '\"')]"
                                 },
-                                "publisher": "[if(equals(parameters('osType'), 'Linux'), 'Microsoft.Azure.Extensions', 'Microsoft.Compute')]",
-                                "type": "[if(equals(parameters('osType'), 'Linux'), 'CustomScript', 'CustomScriptExtension')]",
-                                "typeHandlerVersion": "[if(equals(parameters('osType'), 'Linux'), '2.1', '1.10')]"
+                                "publisher": "Microsoft.Azure.Extensions",
+                                "type": "CustomScript",
+                                "typeHandlerVersion": "2.1"
+                            },
+                            "tags": {}
+                        },
+                        {
+                            "condition": "[equals(parameters('osType'), 'Windows')]",
+                            "type": "Microsoft.Compute/virtualMachines/extensions",
+                            "apiVersion": "2019-12-01",
+                            "dependsOn": [
+                                "[parameters('vmName')]"
+                            ],
+                            "location": "[parameters('location')]",
+                            "name": "[concat(parameters('vmName'), '/custom-script')]",
+                            "properties": {
+                                "autoUpgradeMinorVersion": true,
+                                "protectedSettings": {
+                                    "fileUris": [
+                                        "https://raw.githubusercontent.com/Azure/azure-functions-host/dev/tools/Crank/Agent/Linux/bootstrap.sh"
+                                    ],
+                                    "commandToExecute": "[concat('mv bootstrap.sh /home/Functions/ && cd /home/Functions && chmod +xr bootstrap.sh && sudo -H -u Functions ./bootstrap.sh \"', replace(parameters('customScriptParameters'), '\"', '\\\"'), '\"')]"
+                                },
+                                "publisher": "Microsoft.Compute",
+                                "type": "CustomScriptExtension",
+                                "typeHandlerVersion": "1.10"
                             },
                             "tags": {}
                         }
