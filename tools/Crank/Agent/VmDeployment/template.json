@@ -373,11 +373,11 @@
                             "condition": "[equals(parameters('osType'), 'Linux')]",
                             "type": "Microsoft.Compute/virtualMachines/extensions",
                             "apiVersion": "2019-12-01",
+                            "name": "[concat(parameters('vmName'), '/custom-script-linux')]",
                             "dependsOn": [
                                 "[parameters('vmName')]"
                             ],
                             "location": "[parameters('location')]",
-                            "name": "[concat(parameters('vmName'), '/custom-script')]",
                             "properties": {
                                 "autoUpgradeMinorVersion": true,
                                 "protectedSettings": {
@@ -396,11 +396,11 @@
                             "condition": "[equals(parameters('osType'), 'Windows')]",
                             "type": "Microsoft.Compute/virtualMachines/extensions",
                             "apiVersion": "2019-12-01",
+                            "name": "[concat(parameters('vmName'), '/custom-script-windows')]",
                             "dependsOn": [
                                 "[parameters('vmName')]"
                             ],
                             "location": "[parameters('location')]",
-                            "name": "[concat(parameters('vmName'), '/custom-script')]",
                             "properties": {
                                 "autoUpgradeMinorVersion": true,
                                 "protectedSettings": {
