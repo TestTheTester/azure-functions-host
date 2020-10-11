@@ -420,7 +420,7 @@
                                     "fileUris": [
                                         "https://raw.githubusercontent.com/Azure/azure-functions-host/anatolib/crank-windows-vm-deployment/tools/Crank/Agent/Windows/bootstrap.ps1"
                                     ],
-                                    "commandToExecute": "[concat('.\\bootstrap.ps1 \"', replace(parameters('customScriptParameters'), '\"', '\\\"'), '\"')]"
+                                    "commandToExecute": ".\\bootstrap.ps1"
                                 },
                                 "publisher": "Microsoft.Compute",
                                 "type": "CustomScriptExtension",
