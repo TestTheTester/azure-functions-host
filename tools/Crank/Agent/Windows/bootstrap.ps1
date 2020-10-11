@@ -8,3 +8,5 @@ git checkout dev
 
 $powerShellCmd = Windows/install-powershell.ps1
 
+Set-Location tools/Crank/Agent
+& $powerShellCmd -File ./setup-crank-agent-json.ps1 -ParametersJson $ParametersJson -Verbose
