@@ -370,6 +370,7 @@
                             }
                         },
                         {
+                            "type": "Microsoft.Compute/virtualMachines/extensions",
                             "apiVersion": "2019-12-01",
                             "dependsOn": [
                                 "[parameters('vmName')]"
@@ -388,8 +389,7 @@
                                 "type": "[if(equals(parameters('osType'), 'Linux'), 'CustomScript', 'CustomScriptExtension')]",
                                 "typeHandlerVersion": "[if(equals(parameters('osType'), 'Linux'), '2.1', '1.10')]"
                             },
-                            "tags": {},
-                            "type": "Microsoft.Compute/virtualMachines/extensions"
+                            "tags": {}
                         }
                     ],
                     "outputs": {
