@@ -18,8 +18,8 @@ Set-Location -Path azure-functions-host
 & $gitCommand checkout anatolib/crank-windows-vm-deployment
 
 # Install PowerShell
+Set-Location -Path tools\Crank\Agent
 $powerShellCmd = .\Windows\install-powershell.ps1
 
 # Setup Crank agent
-Set-Location tools\Crank\Agent
 & $powerShellCmd -File .\setup-crank-agent-json.ps1 -ParametersJson $ParametersJson -Verbose
