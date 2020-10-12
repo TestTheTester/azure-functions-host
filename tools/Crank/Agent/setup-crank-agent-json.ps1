@@ -7,6 +7,8 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
+Write-Verbose "setup-crank-agent-json.ps1: `$ParametersJson: '$ParametersJson'" -Verbose
+
 $parameters = @{}
 ($ParametersJson | ConvertFrom-Json).PSObject.Properties | ForEach-Object { $parameters[$_.Name] = $_.Value }
 
