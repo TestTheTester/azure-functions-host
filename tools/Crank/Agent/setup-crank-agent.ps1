@@ -5,7 +5,8 @@ param (
     [bool]$InstallDotNet = $true,
     [bool]$InstallCrankAgent = $true,
     [string]$CrankBranch,
-    [bool]$Docker = $false
+    [bool]$Docker = $false,
+    [pscredential]$WindowsLocalAdmin
 )
 
 $ErrorActionPreference = 'Stop'
@@ -179,7 +180,7 @@ function ScheduleCrankAgentStart {
         $scriptPath = Join-Path -Path (Split-Path $PSCommandPath -Parent) -ChildPath 'run-crank-agent.ps1'
 
         if ($IsWindows) {
-            ScheduleCrankAgentStartWindows -RunScriptPath $scriptPath -Credential (Get-Credential)
+            ScheduleCrankAgentStartWindows -RunScriptPath $scriptPath -Credential $WindowsLocalAdmin
         } else {
             ScheduleCrankAgentStartLinux -RunScriptPath $scriptPath
         }
