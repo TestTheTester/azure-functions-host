@@ -18,7 +18,7 @@ Set-Location -Path azure-functions-host
 & $gitCommand checkout dev
 
 # Install PowerShell
-$powerShellCmd = Windows\install-powershell.ps1
+$powerShellCmd = .\Windows\install-powershell.ps1
 
 # Setup Crank agent
 Set-Location tools\Crank\Agent
