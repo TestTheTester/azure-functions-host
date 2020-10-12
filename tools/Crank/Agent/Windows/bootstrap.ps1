@@ -22,4 +22,4 @@ Set-Location -Path tools\Crank\Agent
 $powerShellCmd = .\Windows\install-powershell.ps1
 
 # Setup Crank agent
-& $powerShellCmd -File .\setup-crank-agent-json.ps1 -ParametersJson $ParametersJson -Verbose
+& $powerShellCmd -File .\setup-crank-agent-json.ps1 -ParametersJson "`"$($ParametersJson -replace '"', '\"')`"" -Verbose
