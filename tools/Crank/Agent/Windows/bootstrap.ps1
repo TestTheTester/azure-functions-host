@@ -15,7 +15,7 @@ New-Item -Path C:\github -ItemType Directory
 Set-Location -Path C:\github
 & $gitCommand clone https://github.com/Azure/azure-functions-host.git
 Set-Location -Path azure-functions-host
-& $gitCommand checkout dev
+& $gitCommand checkout anatolib/crank-windows-vm-deployment
 
 # Install PowerShell
 $powerShellCmd = .\Windows\install-powershell.ps1
