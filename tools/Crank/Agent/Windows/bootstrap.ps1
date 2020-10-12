@@ -11,10 +11,10 @@ Invoke-RestMethod -Uri "https://github.com/git-for-windows/git/releases/download
 $gitCommand = "$env:ProgramFiles\Git\cmd\git.exe"
 
 # Clone azure-functions-host repo
-mkdir C:\github
-Set-Location C:\github
+New-Item -Path C:\github -ItemType Directory
+Set-Location -Path C:\github
 & $gitCommand clone https://github.com/Azure/azure-functions-host.git
-Set-Location azure-functions-host
+Set-Location -Path azure-functions-host
 & $gitCommand checkout dev
 
 # Install PowerShell
