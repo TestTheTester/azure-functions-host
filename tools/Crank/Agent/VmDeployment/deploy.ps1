@@ -50,4 +50,5 @@ $NamePostfixes | ForEach-Object -Parallel {
 }
 
 # TODO: remove this warning when app deployment is automated
-Write-Warning "Remember to deploy the Function apps to /home/$UserName/FunctionApps"
+$appPath = if ($OsType -eq 'Linux') { "/home/$UserName/FunctionApps" } else { 'C:\FunctionApps' }
+Write-Warning "Remember to deploy the Function apps to $appPath"
