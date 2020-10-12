@@ -82,7 +82,8 @@ function EnsureDirectoryExists($Path) {
 
 function CloneCrankRepo {
     Write-Verbose "Cloning crank repo..."
-    $githubPath = Join-Path -Path '~' -ChildPath 'github'
+    $githubParent = $IsLinux ? '~' : 'C:\'
+    $githubPath = Join-Path -Path $githubParent -ChildPath 'github'
     EnsureDirectoryExists $githubPath
     Push-Location -Path $githubPath
     try {
