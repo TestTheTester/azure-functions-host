@@ -127,7 +127,7 @@ function InstallCrankAgent {
 function ScheduleCrankAgentStartWindows($RunScriptPath, [pscredential]$Credential) {
     $taskName = 'CrankAgent'
 
-    if (Get-ScheduledTask -TaskName $taskName) {
+    if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
         Write-Warning "Task '$taskName' already exists, no changes performed"
     } else {
         $action = New-ScheduledTaskAction -Execute 'pwsh.exe' `
