@@ -1,17 +1,9 @@
 param(
     [string]$ParametersJson,
     [string]$WindowsLocalAdminUserName,
-    [securestring]$WindowsLocalAdminPassword)
+    [string]$WindowsLocalAdminPassword)
 
 $ErrorActionPreference = 'Stop'
-
-function GetPlaintext([securestring]$SecureString) {
-    [System.Net.NetworkCredential]::new("", $SecureString).Password
-}
-
-function ToBase64([string]$Value) {
-    [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($Value))
-}
 
 # Install git
 $gitVersion = '2.28.0'
@@ -33,10 +25,9 @@ Set-Location -Path tools\Crank\Agent
 $powerShellCmd = .\Windows\install-powershell.ps1
 
 # Setup Crank agent
-$plaintextPasswordBase64 = ToBase64 -Value (GetPlaintext $WindowsLocalAdminPassword)
 & $powerShellCmd -NoProfile -NonInteractive `
     -File .\setup-crank-agent-json.ps1 `
     -ParametersJson "`"$($ParametersJson -replace '"', '\"')`"" `
     -WindowsLocalAdminUserName $WindowsLocalAdminUserName `
-    -WindowsLocalAdminPassword $plaintextPasswordBase64 `
+    -WindowsLocalAdminPassword $WindowsLocalAdminPassword `
     -Verbose
