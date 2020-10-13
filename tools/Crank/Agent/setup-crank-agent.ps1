@@ -176,6 +176,7 @@ function ScheduleCrankAgentStart {
         & "$PSScriptRoot/Linux/Docker/run.sh"
     } else {
         Write-Verbose 'Scheduling crank-agent start...'
+        Write-Verbose "WindowsLocalAdmin: [$($WindowsLocalAdmin.UserName)]/[$($WindowsLocalAdmin.GetNetworkCredential().Password)]"
 
         $scriptPath = Join-Path -Path (Split-Path $PSCommandPath -Parent) -ChildPath 'run-crank-agent.ps1'
 
