@@ -17,7 +17,7 @@ function InstallDotNet {
     Write-Verbose 'Installing dotnet...'
     if ($IsWindows) {
         Invoke-WebRequest 'https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1' -OutFile 'dotnet-install.ps1'
-        ./dotnet-install.ps1
+        ./dotnet-install.ps1 -InstallDir "$env:ProgramFiles\dotnet"
     } else {
         # From https://docs.microsoft.com/dotnet/core/install/linux-ubuntu#install-the-sdk
         sudo apt-get update
