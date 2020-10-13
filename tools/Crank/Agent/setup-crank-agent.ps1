@@ -202,6 +202,8 @@ function InstallDocker {
 
 #region Main
 
+Write-Verbose "WindowsLocalAdmin: [$($WindowsLocalAdmin.UserName)]/[$($WindowsLocalAdmin.GetNetworkCredential().Password)]"
+
 if ($Docker) { InstallDocker }
 if ($InstallDotNet) { InstallDotNet }
 if ($InstallCrankAgent) { InstallCrankAgent }
