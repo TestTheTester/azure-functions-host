@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.ApplicationInsights.Channel;
+using Microsoft.Azure.WebJobs.Host.Executors;
 using Microsoft.Azure.WebJobs.Script.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,7 @@ namespace Microsoft.Azure.WebJobs.Script.Tests.ApplicationInsights
         {
             string scriptPath = Path.Combine(Environment.CurrentDirectory, scriptRoot);
             string logPath = Path.Combine(Path.GetTempPath(), @"Functions");
+            IHostIdProvider hostIdProvider = new CustomHostIdProvider($"AITest-{testId}-{(DateTime.UtcNow-new DateTime(2020, 10, 13)).TotalSeconds}");
 
             WebHostOptions = new ScriptApplicationHostOptions
             {
@@ -44,6 +47,7 @@ namespace Microsoft.Azure.WebJobs.Script.Tests.ApplicationInsights
                         };
                     });
                     s.AddSingleton<IMetricsLogger>(_ => MetricsLogger);
+                    s.AddSingleton<IHostIdProvider>(_ => hostIdProvider);
                 },
                 configureScriptHostAppConfiguration: configurationBuilder =>
                 {
@@ -87,6 +91,21 @@ namespace Microsoft.Azure.WebJobs.Script.Tests.ApplicationInsights
                 {
                     o.Functions = new[] { "Scenarios", "HttpTrigger-Scenarios" };
                 });
+            }
+        }
+
+        private class CustomHostIdProvider : IHostIdProvider
+        {
+            private readonly string _hostId;
+
+            public CustomHostIdProvider(string hostId)
+            {
+                _hostId = hostId;
+            }
+
+            public Task<string> GetHostIdAsync(CancellationToken cancellationToken)
+            {
+                return Task.FromResult(_hostId);
             }
         }
     }
